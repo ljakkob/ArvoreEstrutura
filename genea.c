@@ -18,6 +18,8 @@ struct no
 
 int cont=1; //Contador que dá nome aos nós
 struct no *raiz; //Ponteiro da raiz
+struct no *masc;
+struct no *fem;
 
 /*Rotina que faz a inserção na árvore binária de busca
 O Parâmetro dado recebe um ponteiro para string
@@ -63,7 +65,7 @@ void inserir()
 
 
 
-            if (ponteiro->Sexo > 0)
+            if (ponteiro->Nome > 0)
             {
                 ponteiro = ponteiro->Filho2;
             }
@@ -119,6 +121,46 @@ void inserir()
     }
 }
 
+buscar()
+{
+    struct no *ponteiro;
+    struct no *ponteiroAnterior;
+    ponteiro = raiz; //ponteiro inicia na raiz
+    ponteiroAnterior = NULL; //anterior inicial em NULL
+
+
+    while (ponteiro)   //Faz a busca do lugar ao qual deve ser inserido o nó
+    {
+
+        ponteiroAnterior = ponteiro;
+
+
+
+        if (ponteiro->Nome > 0)
+        {
+            ponteiro = ponteiro->Filho2;
+            if( ponteiroAnterior->Sexo == 0)
+            {
+               if ( ponteiroAnterior->EstCiv != 1 ){
+                fem = ponteiroAnterior;
+               }
+            }
+        }
+        else
+        {
+            ponteiro = ponteiro->Filho1;
+            if( ponteiroAnterior->Sexo == 1)
+            {
+                 if ( ponteiroAnterior->EstCiv != 1 ){
+                masc = ponteiroAnterior;
+               }
+            }
+
+        }
+
+    }
+}
+
 
 /*Faz a caminhada em ordem recursiva*/
 void caminharEmOrdem(struct no *ponteiro)
@@ -126,22 +168,29 @@ void caminharEmOrdem(struct no *ponteiro)
     if (ponteiro)
     {
         caminharEmOrdem(ponteiro->Filho1);
-        if(ponteiro->Nome != 0 && ponteiro->Pai != NULL && ponteiro->Pai->Nome == 0)
-        {
-            printf("\nNome:%d Sexo: %d Nome do Pai: DEUS\n", ponteiro->Nome, ponteiro->Sexo);
-        }
-        else if(ponteiro->Nome != 0 && ponteiro->Pai != NULL)
-        {
-            printf("\nNome: %d Sexo: %d Nome do Pai: %d\n", ponteiro->Nome, ponteiro->Sexo, ponteiro->Pai->Nome);
-        }
-        if(ponteiro->Nome != 0 && ponteiro->Mae != NULL)
-        {
-            printf("\nNome: %d Sexo: %d Nome da Mãe: %d\n", ponteiro->Nome, ponteiro->Sexo, ponteiro->Mae->Nome);
-        }
+        printf("Nome: %d  ", ponteiro->Nome);
+        if(ponteiro->Mae != NULL){
+        printf("Nome da Mae: %d  ", ponteiro->Mae->Nome);}
+        if(ponteiro->Pai != NULL){
+        printf("Nome do Pai: %d  ", ponteiro->Pai->Nome);}
+        if(ponteiro->CasadoCom != NULL){
+        printf("Casado com: %d  ", ponteiro->CasadoCom->Nome);}
+        printf("\n\n");
         caminharEmOrdem(ponteiro->Filho2);
 
     }
 }
+
+casar()
+{
+    buscar();
+    fem->EstCiv=1;
+    masc->EstCiv=1;
+
+    fem->CasadoCom = masc;
+    masc->CasadoCom = fem;
+}
+
 
 
 /*Rotina principal
@@ -154,16 +203,12 @@ int main()
     inserir();
     inserir();
     inserir();
+    casar();
     inserir();
     inserir();
+    casar();
     inserir();
-    //buscar();
-    inserir();
-    inserir();
-    inserir();
-    //casar(raiz);
     caminharEmOrdem(raiz);
-    printf("\nInserir para buscar: ");
     //printf("%d", buscar(dado));
 
     getchar();
