@@ -18,6 +18,8 @@ struct no
 
 int cont=1; //Contador que dá nome aos nós
 struct no *raiz; //Ponteiro da raiz
+struct no *masc;
+struct no *fem;
 
 /*Rotina que faz a inserção na árvore binária de busca
 O Parâmetro dado recebe um ponteiro para string
@@ -124,8 +126,6 @@ casar()
 {
     struct no *ponteiro;
     struct no *ponteiroAnterior;
-    struct no *masc;
-    struct no *fem;
     ponteiro = raiz; //ponteiro inicia na raiz
     ponteiroAnterior = NULL; //anterior inicial em NULL
 
@@ -167,12 +167,14 @@ casar()
 
     if(masc == NULL || fem == NULL)
     {
-        printf("Não há elementos disponíveis para o casamento!");
+        printf("Não há elementos disponíveis para o casamento!\n");
         return 0;
     }
 
     fem->CasadoCom = masc;
     masc->CasadoCom = fem;
+    masc=NULL;
+    fem=NULL;
 }
 
 
@@ -182,7 +184,7 @@ void caminharEmOrdem(struct no *ponteiro)
     if (ponteiro)
     {
         caminharEmOrdem(ponteiro->Filho2);
-        printf("Nome: %d  ", ponteiro->Nome);
+        printf("Nome: %d  Sexo: %d  ", ponteiro->Nome, ponteiro->Sexo);
         if(ponteiro->Mae != NULL)
         {
             printf("Nome da Mae: %d  ", ponteiro->Mae->Nome);
