@@ -66,7 +66,7 @@ void inserir()
 
 
 
-            if (ponteiro->Nome > 0)
+            if (ponteiroAnterior->Sexo > 0)
             {
                 ponteiro = ponteiro->Filho2;
             }
@@ -137,7 +137,7 @@ casar()
 
 
 
-        if (ponteiro->Nome > 0)
+        if (ponteiroAnterior->Sexo > 0)
         {
             ponteiro = ponteiro->Filho2;
         }
@@ -214,7 +214,9 @@ int main()
     inserir();
     inserir();
     inserir();
-    //casar();
+    casar();
+    inserir();
+    inserir();
     inserir();
     inserir();
     casar();
