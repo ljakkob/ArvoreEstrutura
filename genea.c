@@ -20,14 +20,19 @@ int cont=1; //Contador que dá nome aos nós
 struct no *raiz; //Ponteiro da raiz
 struct no *masc;
 struct no *fem;
-
 /*Rotina que faz a inserção na árvore binária de busca
 O Parâmetro dado recebe um ponteiro para string
 A função não retorna valor nem referência
 */
-void inserir()
+int inserir()
 {
     struct no *alocar; //Ponteiro para fazer alocação
+    int sexo,nome;
+    printf("Escreva o sexo\n");
+    scanf("%d", &sexo);
+    if(sexo > 1){
+    sexo = 1;
+    }
 
     alocar = (struct no *) malloc(sizeof(struct no)); //Faz alocação na memória
 
@@ -40,13 +45,14 @@ void inserir()
     {
         raiz = alocar;
         raiz->Nome = 0;
-        raiz->Sexo = 1;
+        raiz->Sexo = sexo;
         raiz->EstCiv = 1;
         //raiz->CasadoCom = alocar;
         raiz->Pai = NULL;
         raiz->Mae = NULL;
         raiz->Filho1 = NULL;
         raiz->Filho2 = NULL;
+        return 0;
 
     }
 
@@ -59,6 +65,9 @@ void inserir()
         ponteiro = raiz; //ponteiro inicia na raiz
         ponteiroAnterior = NULL; //anterior inicial em NULL
 
+printf("Escreva o nome\n");
+    scanf("%d", &nome);
+
         while (ponteiro)   //Faz a busca do lugar ao qual deve ser inserido o nó
         {
 
@@ -66,7 +75,7 @@ void inserir()
 
 
 
-            if (ponteiroAnterior->Sexo > 0)
+            if (ponteiroAnterior->Nome > cont)
             {
                 ponteiro = ponteiro->Filho2;
             }
@@ -81,7 +90,7 @@ void inserir()
             alocar->CasadoCom = NULL;
             alocar->Filho1 = NULL;
             alocar->Filho2 = NULL;
-            alocar->Sexo = 0;
+            alocar->Sexo = sexo;
             alocar->EstCiv = 0;
             ponteiroAnterior->Filho2 = alocar;
 
@@ -103,7 +112,7 @@ void inserir()
             alocar->CasadoCom = NULL;
             alocar->Filho1 = NULL;
             alocar->Filho2 = NULL;
-            alocar->Sexo = 1;
+            alocar->Sexo = sexo;
             alocar->EstCiv = 0;
             ponteiroAnterior->Filho1 = alocar;
 
@@ -122,59 +131,34 @@ void inserir()
     }
 }
 
-casar()
-{
-    struct no *ponteiro;
-    struct no *ponteiroAnterior;
-    ponteiro = raiz; //ponteiro inicia na raiz
-    ponteiroAnterior = NULL; //anterior inicial em NULL
 
+struct no * buscar(int k) {
 
-    while (ponteiro)   //Faz a busca do lugar ao qual deve ser inserido o nó
-    {
+      struct no *ponteiro;
 
-        ponteiroAnterior = ponteiro;
+      ponteiro = raiz;
 
+      while (ponteiro) {
 
+      if (ponteiro->Nome == k){
+       if(ponteiro->Sexo == 1){
+        masc = ponteiro;
+       }
+       else{
+       fem = ponteiro;
+       }
+      } //Faz a comparação de strings
+            //return ponteiro; //Retorna ponteiro se o encontrar
 
-        if (ponteiroAnterior->Sexo > 0)
-        {
+      if (ponteiro->Nome > k)
             ponteiro = ponteiro->Filho2;
-        }
-        else
-        {
+
+      else
             ponteiro = ponteiro->Filho1;
 
-        }
-        if( ponteiroAnterior->Sexo == 0)
-        {
-            if ( ponteiroAnterior->EstCiv != 1 )
-            {
-                fem = ponteiroAnterior;
-                fem->EstCiv=1;
-            }
-        }
-        if( ponteiroAnterior->Sexo == 1)
-        {
-            if ( ponteiroAnterior->EstCiv != 1 )
-            {
-                masc = ponteiroAnterior;
-                masc->EstCiv=1;
-            }
-        }
+      }
 
-    }
-
-    if(masc == NULL || fem == NULL)
-    {
-        printf("Não há elementos disponíveis para o casamento!\n");
-        return 0;
-    }
-
-    fem->CasadoCom = masc;
-    masc->CasadoCom = fem;
-    masc=NULL;
-    fem=NULL;
+      return NULL; //Retorna o ponteiro nulo
 }
 
 
@@ -210,22 +194,45 @@ com algumas inserções, um caminhamento e uma busca no final
 
 int main()
 {
-    inserir();
-    inserir();
-    inserir();
-    inserir();
-    casar();
-    inserir();
-    inserir();
-    inserir();
-    inserir();
-    casar();
-    casar();
-    casar();
-    //casar();
-    inserir();
-    caminharEmOrdem(raiz);
-    //printf("%d", buscar(dado));
+  int op=1, k;
+    while(op)
+    {
+        printf("1-Insere\n2-Casa\n3-Imprime\n");
+        scanf("%d", &op);
+        if(op == 1)
+        {
+                inserir();
+                   }
+        if(op == 2)
+        {
+            scanf("%d", &k);
+            buscar(k);
+            scanf("%d", &k);
+            buscar(k);
+            if(masc == NULL || fem == NULL)
+            {
+                printf("Erro durante a busca!\n");
+            }
+            else
+            {
+                printf("masc: %p %d\n", masc, masc->Nome);
+                printf("fem: %p %d\n", fem, fem->Nome);
+                masc->CasadoCom = fem;
+                fem->CasadoCom = masc;
 
-    getchar();
+                masc->EstCiv = 1;
+                fem->EstCiv = 1;
+
+            }
+masc = NULL;
+                fem = NULL;
+        }
+        //printf("%d", masc->Nome);
+        //casar();
+        if(op == 3)
+        {
+            caminharEmOrdem(raiz);
+        }
+    }
+    //printf("%d", buscar(dado));
 }
