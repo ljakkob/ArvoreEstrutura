@@ -20,15 +20,13 @@ int cont=1; //Contador que dá nome aos nós
 struct no *raiz; //Ponteiro da raiz
 struct no *masc;
 struct no *fem;
-/*Rotina que faz a inserção na árvore binária de busca
-O Parâmetro dado recebe um ponteiro para string
-A função não retorna valor nem referência
-*/
+
+
 int inserir()
 {
     struct no *alocar; //Ponteiro para fazer alocação
     int sexo,nome;
-    printf("Escreva o sexo\n");
+    printf("Escreva o sexo (0) Para Feminino (1) Masculino\n");
     scanf("%d", &sexo);
     if(sexo > 1){
     sexo = 1;
@@ -41,7 +39,8 @@ int inserir()
         printf("Falta de memória");
     }
 
-    if (!raiz)   //Esse é o nó DEUS. O alfa e o ômega, o princípio e o fim. O criador de todas as coisas! Javé, Jeová, Alah.
+    if (!raiz)   //Criando a raiz
+
     {
         raiz = alocar;
         raiz->Nome = 0;
@@ -197,7 +196,8 @@ int main()
   int op=1, k;
     while(op)
     {
-        printf("1-Insere\n2-Casa\n3-Imprime\n");
+        printf("=======================PROJETO ARVORE GENEALOGICA=======================\n\n");
+        printf("1-Insere pessoa\n2-Casar\n3-Encontrar Parente\n");
         scanf("%d", &op);
         if(op == 1)
         {
@@ -205,8 +205,10 @@ int main()
                    }
         if(op == 2)
         {
+            printf("Informe o nome do noivo\n");
             scanf("%d", &k);
             buscar(k);
+            printf("Informe o nome da noiva\n");
             scanf("%d", &k);
             buscar(k);
             if(masc == NULL || fem == NULL)
