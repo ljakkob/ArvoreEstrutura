@@ -1,0 +1,226 @@
+ 
+
+UNIVERSIDADE FEDERAL  DA BAHIA
+Estrutura de dados – MATD04
+Docente: Danilo Silva dos Santos
+
+
+
+
+
+
+
+
+
+
+
+
+Estrutura de Dados: Projeto Árvore Genealógica
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Salvador 
+2014
+
+
+UNIVERSIDADE FEDERAL  DA BAHIA
+ÍCARO ERASMO BARREIRO
+LARISSA JACOB PIMENTA
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Estrutura de Dados: Projeto Árvore Genealógica
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Salvador 
+2014
+SUMÁRIO
+
+1.Introdução...................................................................................................................04
+2.Estrutura de dados utilizada.....................................................................................05
+3. Descrição do código ..................................................................................................06
+4.conclusão.....................................................................................................................07
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1.  INTRODUÇÃO
+
+
+
+O projeto como o próprio nome já diz cria uma árvore genealógica a partir de dados inseridos pelo usuário. a partir desse projeto foi possível aplicar os conhecimentos aprendidos em sala desde as primeiras aulas até os conteúdos mais recentes.
+
+Para desenvolver este projeto várias técnicas foram discutidas com o objetivo de encontrar a melhor solução em tempo hábil, o que se mostrou um desafio tendo em vista o pouco tempo disponível para discussão, execução e refinamento do projeto.
+
+A melhor solução solução encontrada em consenso pra atender os requisitos do projeto foi a criação de uma árvore onde temos uma raiz que é um nó e fica no topo da árvore, um filho que é um nó que fica abaixo de outro nó o pai que é um nó acima de outro nó.
+
+As atualizações e todo o processo de criação  pode ser encontrado no repositório do Git Hub no link:  https://github.com/ljakkob/ArvoreEstrutura. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2.ESTRUTURA DE DADOS UTILIZADA
+
+Para realizar as buscas e tornar o código viável de acordo com os requisitos a estrutura de dados utilizada foi uma árvore binária, onde cada nó possui no máximo 2 subárvore, e  as duas subárvores de cada nó são denominadas de acordo com o seu lado de alocação, sendo subárvore esquerda. Na imagem abaixo é possível visualizar o conceito onde neste caso o “A” representa a raiz.
+
+
+. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3.DESCRIÇÃO DO CÓDIGO
+
+Por se tratar de uma árvore o primeiro módulo a ser criado é o da raiz que é composta por um strcuct com ponteiros para o pai, mãe, filhos e cônjuge. O struct contém também os elementos responsáveis por indicar o sexo e estado civil.
+
+3.1 Inserir
+
+Chamada pela função main ela é responsável por alimentar o bando de dados da árvore, ondes as pessoas do sexo masculino ficar a direita e as do sexo feminino a esquerda. Quando a pessoa é adicionada na árvore ela recebe ponteiros para filho e estado civil que a principio é nulo onde só pode ser alterado a partir da função casar
+
+
+3.2 Casar
+Afunção Casar pede a entrada de dois elementos de sexos opostos e faz com que esses dois elementos apontem um pro outro através do ponteiro “CasarCom”. Se os elementos forem do mesmo sexo ou o elemento não existir, ele retorna a mensagem “erro na busca”.
+
+3.3 Imprimir
+Exibe todos os graus de parentesco da árvore através de uma busca binária
+
+
+
+
+
+
+
+
+
+
+
+
+4.CONCLUSÃO
+
+O Contato com a programação principalmente em grupo é uma experiência ímpar, tendo em vista que este exercício não só desenvolve habilidades técnicas como o próprio trabalho em equipe que é um atributo necessário para todo bom programador.
+
+O projeto desenvolvido configurou-se um grande desafio desde a leitura do escopo até o desenvolvimento das estratégias de solução, no entanto é notável o progresso desde os primeiros projetos até o trabalho final essa evolução deve-se ao exercício constante da programação e da interação dos desenvolvedores.
+
+É sabido que este não será o último desafio a ser vencido durante a jornada acadêmica e que há muito a se aprender no que tange a linguagem C e a programação em si, mas poder concluir este projeto diante de todas as dificuldades enfrentadas é um estímulo para continuar aperfeiçoando os conhecimentos e se preparar para todos os desafios que virão durante todo este processo de aprendizagem.
+
+
+
+
+
+
+
+
+
+
